@@ -84,6 +84,38 @@ public class BooksServiceImplTest {
 //		book1.setAuthor("Shakespear");
 //		book1.setName("Romeo and Juliet");
 		when(booksRepository.findById(id)).thenReturn(null);
-		
+		assertEquals(booksServiceImpl.deleteBooks(id), null);
 	}
+	
+	@Test
+	void test_getBookById() {
+		int id = 10;
+		Books books = new Books();
+		books.setId(10);
+		books.setName("Aadesh");
+		books.setAuthor("Royal Palm");
+		when(booksRepository.findById(id)).thenReturn(books);
+		assertEquals(booksServiceImpl.getBookById(id).getId(), id);
+	}
+	
+	@Test
+	void test_insertMultipleBooks() {
+		List<Books> listOfBooksInput = new ArrayList<>();
+		List<Books> listOfBooksOutput = new ArrayList<>();
+		Books book1 = new Books();
+		Books book2 = new Books();
+		book1.setId(25);
+		book1.setAuthor("Shakespear");
+		book1.setName("Romeo and Juliet");
+		book2.setId(20);
+		book2.setAuthor("Chetan Bhagat");
+		book2.setName("One Indian Girl");
+		listOfBooksInput.add(book1);
+		listOfBooksInput.add(book2);
+		listOfBooksOutput.add(book1);
+		listOfBooksOutput.add(book2);
+		when(booksRepository.saveAll(listOfBooksInput)).thenReturn(listOfBooksOutput);
+		assertEquals(booksServiceImpl.insertMultipleBooks(listOfBooksInput), listOfBooksOutput);
+	}
+	
 }

@@ -1,0 +1,23 @@
+logging:
+  file:
+    name: C:/Users/HP/Documents/workspace-spring-tool-suite-4-4.17.1.RELEASE/SpringCRUDMockDemo/application.log
+  level:
+    org:
+      hibernate: ERROR
+      springframework:
+        web: DEBUG
+  pattern:
+    file: '"%d{yyyy-MM-dd } [%thread] %-5level %logger{36} - %msg%n"'
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/demo?autoReconnect=true&useSSL=false
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
